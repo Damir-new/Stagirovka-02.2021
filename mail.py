@@ -1,21 +1,22 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys # импорт ключей,для ввода по клавише Enter
+# импорт логина и пароля из файла par
 from par import mail_login
 from par import mail_password
-import time
+
 
 
 driver = webdriver.Chrome(executable_path=r"C:\Users\Дамир\PycharmProject\sel_pyt\chromedriver\chromedriver.exe")
 
-# говорим WebDriver искать каждый элемент в течение 5 секунд
+#  WebDriver ищет каждый элемент в течение 5 секунд
 driver.implicitly_wait(5)
 
 driver.get("http://gmail.com/")
 
-email_input = driver.find_element_by_id("identifierId") # находит поле ввода на сайте по id этого поля(можно не по id)
+email_input = driver.find_element_by_id("identifierId") # поиск по локатору id
 email_input.clear() # очистка поля перед вводом логина
 email_input.send_keys(mail_login) # ввод логина
-email_input.send_keys(Keys.ENTER)
+email_input.send_keys(Keys.ENTER) # нажатие ENter
 
 
 
@@ -38,9 +39,10 @@ password_input.send_keys(Keys.ENTER)
 #time.sleep(10)
 
 
-poisk_input = driver.find_element_by_class_name('gb_ff') # ввод в поиск темы письма!
+poisk_input = driver.find_element_by_class_name('gb_ff') # поиск элемента 'поиск'в почте
 poisk_input.clear()
-poisk_input.send_keys('subject:Simbirsoft theme')
+poisk_input.send_keys('subject:Simbirsoft theme') # Поиск темы письма
 poisk_input.send_keys(Keys.ENTER)
+
 driver.quit()
 
